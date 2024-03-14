@@ -16,6 +16,8 @@ Input: arr = [1,2,4]
 Output: false
 Explanation: There is no way to reorder the elements to obtain an arithmetic progression.
 
+https://leetcode.com/problems/can-make-arithmetic-progression-from-sequence/description/
+
 */
 
 class Solution {
