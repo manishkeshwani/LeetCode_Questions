@@ -15,18 +15,50 @@ Example 2:
 Input: nums = [2,5,6,0,0,1,2], target = 3
 Output: false
 
+Constraints:
+1 <= nums.length <= 5000
+-104 <= nums[i] <= 104
+nums is guaranteed to be rotated at some pivot.
+-104 <= target <= 104
+
 https://leetcode.com/problems/search-in-rotated-sorted-array-ii/
+
 */
-
-
 
 class Solution {
 public:
     bool search(vector<int>& nums, int target) {
+        int n = nums.size();
+        int low = 0;
+        int high = n-1;
 
-         for(int i = 0 ;i<nums.size();i++){
-            if(nums[i]==target)return true;
+        while(low<=high){
+
+            int mid = (low+high)/2;
+
+            if(nums[mid]==target)return true;
+
+            if(nums[low]==nums[mid] && nums[mid]==nums[high]){
+                low++;
+                high--;
+                continue;
+            }
+
+            else if(nums[low]<=nums[mid]){
+
+                if(nums[low]<=target && target<=nums[mid])high = mid-1;
+                else low=mid+1;
+
+            }
+
+            else{
+
+                if(nums[mid]<=target && target<=nums[high])low=mid+1;
+                else high=mid-1;
+            }
+
         }
+
         return false;
         
     }
